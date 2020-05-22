@@ -1,0 +1,100 @@
+<div class="container">
+    <div class="row">
+        <div 
+            *ngIf="doctors"
+            class="col-4"
+        >
+            <ul class="list-group">
+                <li 
+                    *ngFor="let doctor of doctors; index as i;"
+                    class="list-group-item"
+                >   {{ doctor.name }}
+                <button
+                    (click)="openDetails(doctor.id)"
+                    class="btn btn-primary float-right"
+                >
+                    Details
+                </button>
+                </li>
+            </ul>
+        </div>
+        <div 
+            *ngIf="selectedDoctor"
+            class="col-4"
+        >
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-title">
+                        <div class="row">
+                            <div class="col-6">
+                                <h3>{{ selectedDoctor.name }}</h3>
+                            </div>
+                            <div class="col-6">
+                                <button
+                                    (click)="showTasks(selectedDoctor)"
+                                    class="btn btn-warning float-right"
+                                >
+                                    Show Tasks
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-text">
+                        <p>Personal Card:</p>
+                        <ul>
+                            <li>
+                                Personal Id: <span class="text-info">{{ selectedDoctor.id }}</span>
+                            </li>
+                            <li>
+                                Name : <span class="text-info">{{ selectedDoctor.name }}</span>
+                            </li>
+                            <li>
+                                User Name: <span class="text-info">{{ selectedDoctor.username }}</span>
+                            </li>
+                            <li>
+                                Email : <span class="text-info">{{ selectedDoctor.email }}</span>
+                            </li>
+                        </ul>
+                        <p>Address:</p>
+                        <ul>
+                            <li>
+                                Street : <span class="text-info">{{ selectedDoctor?.address?.street }}</span>
+                            </li>
+                            <li>
+                                Suite : <span class="text-info">{{ selectedDoctor?.address?.suite }}</span>
+                            </li>
+                            <li>
+                                Zipcode, City : <span class="text-info">{{ selectedDoctor?.address?.zipcode }},  {{ selectedDoctor?.address?.city }}</span>
+                            </li>
+                        </ul>
+                        <p>Company Card:</p>
+                        <ul>
+                            <li>
+                                Name: <span class="text-info">{{ selectedDoctor?.company?.name }}</span>
+                            </li>
+                            <li>
+                                Description : <span class="text-info">{{ selectedDoctor?.company?.bs }}</span>
+                            </li>
+                            <li>
+                                Cathc Phrase: <span class="text-info">{{ selectedDoctor?.company?.catchPhrase }}</span>
+                            </li>
+                        </ul>  
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div 
+            *ngIf="tasks"
+            class="col-4"
+        >
+            <ul class="list-group">
+                <li 
+                    *ngFor="let task of tasks; index as i;"
+                    [ngClass]="[ task.completed ? 'text-success' : 'text-danger']"
+                    class="list-group-item"
+                >   {{ task.title }}
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

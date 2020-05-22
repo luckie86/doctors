@@ -3,7 +3,13 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  ROUTES: {
+    API_ROUTE: "https://jsonplaceholder.typicode.com/",
+    DOCTORS_ROUTE: "https://jsonplaceholder.typicode.com/users",
+    TASKS_ROUTE: "https://jsonplaceholder.typicode.com/todos",
+    SPECIFIC_DOCTOR_TASKS_ROUTE: "https://jsonplaceholder.typicode.com/users/"
+  }
 };
 
 /*
