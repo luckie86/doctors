@@ -1,8 +1,8 @@
-<div class="container">
+<div class="container-lg p-4 px-lg-0">
     <div class="row">
         <div 
             *ngIf="doctors"
-            class="col-4"
+            class="col-12 col-lg-4 pb-4"
         >
             <ul class="list-group">
                 <li 
@@ -20,10 +20,10 @@
         </div>
         <div 
             *ngIf="selectedDoctor"
-            class="col-4"
+            class="col-12 col-lg-4 pb-4"
         >
             <div class="card">
-                <div class="card-body">
+                <div class="card-body mb-4">
                     <div class="card-title">
                         <div class="row">
                             <div class="col-6">
@@ -84,17 +84,40 @@
             </div>
         </div>
         <div 
-            *ngIf="tasks"
-            class="col-4"
+            *ngIf="tasksForSelectedDoctor"
+            class="col-12 col-lg-4"
         >
-            <ul class="list-group">
-                <li 
-                    *ngFor="let task of tasks; index as i;"
-                    [ngClass]="[ task.completed ? 'text-success' : 'text-danger']"
-                    class="list-group-item"
-                >   {{ task.title }}
-                </li>
-            </ul>
+            <div class="card">
+                <div class="card-body">
+                    <div class="table">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th scope="col">Id</th>
+                                <th scope="col">Task Name</th>
+                                <th scope="col">Status</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr *ngFor="let task of tasksForSelectedDoctor; index as i;">
+                                <th scope="row">{{ task.id }}</th>
+                                <td>{{ task.title }}</td>
+                                <td 
+                                    *ngIf="task.completed"
+                                    class="bg-success"
+                                > Done 
+                                </td>
+                                <td 
+                                    *ngIf="!task.completed"
+                                    class="bg-danger"
+                                > Not Done
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
